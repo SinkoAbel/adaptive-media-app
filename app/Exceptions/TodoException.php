@@ -38,7 +38,7 @@ class TodoException extends Exception
     {
         return new self(
             'Request body is invalid! Fields or it\'s values are possibly incorrect!',
-            404
+            400
         );
     }
 }

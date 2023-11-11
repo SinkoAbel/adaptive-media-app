@@ -1,0 +1,359 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Adaptive Media Application Documentation",
+        "description": "This is the swagger endpoint documentation of the project for Adaptive Media.",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/items": {
+            "get": {
+                "tags": [
+                    "Todo items"
+                ],
+                "summary": "Get paginated todo items.",
+                "description": "Returns json with paginated items.",
+                "operationId": "getAllTodoItems",
+                "responses": {
+                    "200": {
+                        "description": "Successful"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Todo items"
+                ],
+                "summary": "Create new todo item.",
+                "description": "Returns the newly created item.",
+                "operationId": "createTodoItem",
+                "requestBody": {
+                    "description": "Data for post request.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "My new todo"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "This is a short description."
+                                    },
+                                    "completed": {
+                                        "type": "boolean",
+                                        "example": "0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Request body is invalid! Fields or it's values are possibly incorrect!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/items/{id}": {
+            "get": {
+                "tags": [
+                    "Todo items"
+                ],
+                "summary": "Get a todo item by id.",
+                "description": "Returns an item.",
+                "operationId": "getTodoItemsById",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the todo item",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Path variable type is invalid"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "404"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Todo item was not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Todo items"
+                ],
+                "summary": "Update a todo item.",
+                "description": "Returns the updated item.",
+                "operationId": "updateTodoItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the todo item",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "description": "Data for post request.",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string",
+                                        "example": "My new todo"
+                                    },
+                                    "description": {
+                                        "type": "string",
+                                        "example": "This is a short description."
+                                    },
+                                    "completed": {
+                                        "type": "boolean",
+                                        "example": "0"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Todo"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Request body is invalid! Fields or it's values are possibly incorrect!"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Path variable type is invalid"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "404"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Todo item was not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Todo items"
+                ],
+                "summary": "Delete a todo item.",
+                "description": "Returns 204 status code on successful delete.",
+                "operationId": "deleteTodoItem",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "The id of the todo item",
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "No content"
+                    },
+                    "400": {
+                        "description": "Bad request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Path variable type is invalid"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Not found",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "404"
+                                        },
+                                        "error_message": {
+                                            "type": "string",
+                                            "example": "Todo item was not found"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "Todo": {
+                "title": "Todo item",
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "completed": {
+                        "type": "boolean"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}

@@ -11,7 +11,7 @@ use Illuminate\Pagination\Paginator;
 
 /**
  * Class TodoService.
- * This class is used to manipulate Todo items in the database
+ * This class is used to get and manipulate Todo items in the database
  */
 class TodoService
 {
