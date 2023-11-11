@@ -17,12 +17,12 @@
 - php artisan migrate
 - php artisan serve
 
-### Test data
+### Test data:
 - Factory and seeder is configured
 - To generate test data (50 pcs) write: php artisan db:seed
 - Perform requests
 
-### Endpoint documentation
+### Endpoint documentation:
 - the api is equipped with Swagger/OpenAPI documentation.
 - place `L5_SWAGGER_CONST_HOST=http://project.test/api/v1` on the .env file.
 - php artisan serve
@@ -36,3 +36,8 @@
 - mews/purifier (https://github.com/mewebstudio/Purifier)
 - Laravel service generator (https://github.com/timwassenburg/laravel-service-generator)
 - DarkaOnline L5 Swagger (https://github.com/DarkaOnLine/L5-Swagger)
+
+### Used dev tools:
+- IDE: PhpStorm
+- API tools: Insomnia / Postman
+<br/>(I encounterd a kind of bug when used Json body for post/put requests, but this issue is solved by using Form URL Encoded, and with included Header: Content-Type: application/x-www-form-urlencoded)
