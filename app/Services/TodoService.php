@@ -8,6 +8,10 @@ use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Pagination\Paginator;
+use Mews\Purifier\Facades\Purifier;
+use function PHPUnit\Framework\isEmpty;
+use function PHPUnit\Framework\isNull;
+use function Symfony\Component\String\s;
 
 /**
  * Class TodoService.
@@ -74,10 +78,12 @@ class TodoService
      */
     public function createTodoItem(TodoRequest $request): Todo
     {
+        $purifiedData = $this->purifyItems($request);
+
         return Todo::create([
-            self::$COLUMN_NAME => $request[self::$COLUMN_NAME],
-            self::$COLUMN_DESCRIPTION => $request[self::$COLUMN_DESCRIPTION],
-            self::$COLUMN_COMPLETED => $request[self::$COLUMN_COMPLETED]
+            self::$COLUMN_NAME => strip_tags($purifiedData[self::$COLUMN_NAME]),
+            self::$COLUMN_DESCRIPTION => strip_tags($purifiedData[self::$COLUMN_DESCRIPTION]),
+            self::$COLUMN_COMPLETED => strip_tags($purifiedData[self::$COLUMN_COMPLETED]),
         ]);
     }
 
@@ -95,10 +101,12 @@ class TodoService
         if ($todoItem == null)
             throw TodoException::itemNotFound();
 
+        $purifiedItems = $this->purifyItems($request);
+
         $todoItem->update([
-            self::$COLUMN_NAME => $request[self::$COLUMN_NAME],
-            self::$COLUMN_DESCRIPTION => $request[self::$COLUMN_DESCRIPTION],
-            self::$COLUMN_COMPLETED => $request[self::$COLUMN_COMPLETED]
+            self::$COLUMN_NAME => strip_tags($purifiedItems[self::$COLUMN_NAME]),
+            self::$COLUMN_DESCRIPTION => strip_tags($purifiedItems[self::$COLUMN_DESCRIPTION]),
+            self::$COLUMN_COMPLETED => strip_tags($purifiedItems[self::$COLUMN_COMPLETED]),
         ]);
 
         return $todoItem;
@@ -120,5 +128,28 @@ class TodoService
         $todoItem->delete();
 
         return true;
+    }
+
+    /**
+     * This function purifies the data of the TodoRequest,
+     * and if it finds not allowed tags throws an error.
+     * @param TodoRequest $purifiableRequest
+     * @return array
+     * @throws TodoException
+     */
+    private function purifyItems(TodoRequest $purifiableRequest): array
+    {
+        $array = [
+            self::$COLUMN_NAME => Purifier::clean($purifiableRequest[self::$COLUMN_NAME]),
+            self::$COLUMN_DESCRIPTION => Purifier::clean($purifiableRequest[self::$COLUMN_DESCRIPTION]),
+            self::$COLUMN_COMPLETED => Purifier::clean($purifiableRequest[self::$COLUMN_COMPLETED]),
+        ];
+
+        foreach ($array as $key => $value) {
+            if (isNull($value))
+                throw TodoException::invalidHtmlTagsInBody();
+        }
+
+        return $array;
     }
 }
