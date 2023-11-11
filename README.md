@@ -27,3 +27,9 @@
 - http://localhost:8000/api/documentation/
 - In case you can't see the requests click on the bold text called "Todo items"
 - NOTICE 1: Swagger only allowed one 400 request, so I added the request body exception with 422 status code
+
+
+### Used third-party packages:
+- mews/purifier (https://github.com/mewebstudio/Purifier)
+- Laravel service generator (https://github.com/timwassenburg/laravel-service-generator)
+- DarkaOnline L5 Swagger (https://github.com/DarkaOnLine/L5-Swagger)
