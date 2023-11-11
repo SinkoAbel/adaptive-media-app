@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/items', [TodoController::class, 'index']);
+Route::get('/items/{id}', [TodoController::class, 'indexById']);
+Route::post('/items', [TodoController::class, 'store']);
+Route::put('/items/{id}', [TodoController::class, 'update']);
+Route::delete('/items/{id}', [TodoController::class, 'destroy']);
