@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
-Route::get('/items', [TodoController::class, 'index']);
-Route::get('/items/{id}', [TodoController::class, 'indexById']);
-Route::post('/items', [TodoController::class, 'store']);
-Route::put('/items/{id}', [TodoController::class, 'update']);
-Route::delete('/items/{id}', [TodoController::class, 'destroy']);
+Route::prefix('items')->group(function () {
+    Route::get('/', [TodoController::class, 'index']);
+    Route::get('/{id}', [TodoController::class, 'indexById']);
+    Route::post('/', [TodoController::class, 'store']);
+    Route::put('/{id}', [TodoController::class, 'update']);
+    Route::delete('/{id}', [TodoController::class, 'destroy']);
+});
