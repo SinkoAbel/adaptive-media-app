@@ -23,8 +23,11 @@
 - Perform requests
 
 ### Endpoint documentation
-- The api is equipped with Swagger/OpenAPI documentation on the following link:
-- http://localhost:8000/api/documentation/
+- the api is equipped with Swagger/OpenAPI documentation.
+- place `L5_SWAGGER_CONST_HOST=http://project.test/api/v1` on the .env file.
+- php artisan serve
+- open documentation: http://localhost:8000/api/documentation/
+- in case the page is not loading run command: php artisan l5-swagger:generate
 - In case you can't see the requests click on the bold text called "Todo items"
 - NOTICE 1: Swagger only allowed one 400 request, so I added the request body exception with 422 status code
 
