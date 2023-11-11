@@ -31,6 +31,30 @@ class TodoController extends Controller
      *       tags={"Todo items"},
      *       summary="Get paginated todo items.",
      *       description="Returns json with paginated items.",
+     *       @OA\Parameter(
+     *           name="completed",
+     *           in="query",
+     *           description="Filter the items on their completed value.",
+     *           @OA\Schema(type="boolean")
+     *        ),
+     *        @OA\Parameter(
+     *           name="name",
+     *           in="query",
+     *           description="Filter the item on their names.",
+     *           @OA\Schema(type="string")
+     *        ),
+     *        @OA\Parameter(
+     *           name="page",
+     *           in="query",
+     *           description="Get the requested page.",
+     *           @OA\Schema(type="number")
+     *        ),
+     *        @OA\Parameter(
+     *           name="per_page",
+     *           in="query",
+     *           description="Filter the nubmer of items on a page.",
+     *           @OA\Schema(type="number")
+     *       ),
      *       @OA\Response(
      *           response=200,
      *           description="Successful",
@@ -177,7 +201,7 @@ class TodoController extends Controller
      *         @OA\JsonContent(ref="#/components/schemas/Todo")
      *     ),
      *     @OA\Response(
-     *         response=422
+     *         response=422,
      *         description="Bad request",
      *         @OA\JsonContent(
      *             type="object",

@@ -14,6 +14,40 @@
                 "summary": "Get paginated todo items.",
                 "description": "Returns json with paginated items.",
                 "operationId": "getAllTodoItems",
+                "parameters": [
+                    {
+                        "name": "completed",
+                        "in": "query",
+                        "description": "Filter the items on their completed value.",
+                        "schema": {
+                            "type": "boolean"
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "in": "query",
+                        "description": "Filter the item on their names.",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "description": "Get the requested page.",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "per_page",
+                        "in": "query",
+                        "description": "Filter the nubmer of items on a page.",
+                        "schema": {
+                            "type": "number"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "Successful"

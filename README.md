@@ -13,7 +13,7 @@
 - git clone <project>
 - cd inside the cloned folder
 - composer install & npm install
-- edit .env file according to your database table & credentials
+- create .env file from .env.example, and modify the content according to your database table & credentials
 - php artisan migrate
 - php artisan serve
 
