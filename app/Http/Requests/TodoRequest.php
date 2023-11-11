@@ -27,14 +27,10 @@ class TodoRequest extends FormRequest
      */
     public function rules(): array
     {
-        /**
-         * TODO: currently we receive a 404 when the validation fails...
-         *      instead we should give back an error object, with Http Response Status: 400
-         */
         return [
             self::$COLUMN_NAME => 'string|required|max:80',
             self::$COLUMN_DESCRIPTION => 'string|max:750|nullable',
-            self::$COLUMN_COMPLETED => 'required|boolean'
+            self::$COLUMN_COMPLETED => 'required|boolean',
         ];
     }
 

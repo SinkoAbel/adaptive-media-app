@@ -41,4 +41,12 @@ class TodoException extends Exception
             400
         );
     }
+
+    public static function invalidHtmlTagsInBody(): TodoException
+    {
+        return new self(
+            'Invalid html tags found in request body!',
+            400
+        );
+    }
 }
