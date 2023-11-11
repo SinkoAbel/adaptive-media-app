@@ -29,7 +29,7 @@
 - open documentation: http://localhost:8000/api/documentation/
 - in case the page is not loading run command: php artisan l5-swagger:generate
 - In case you can't see the requests click on the bold text called "Todo items"
-- NOTICE 1: Swagger only allowed one 400 request, so I added the request body exception with 422 status code
+- NOTICE: Swagger only allowed one 400 request, so I added the request body exception with 422 status code
 
 
 ### Used third-party packages:
