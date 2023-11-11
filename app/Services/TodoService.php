@@ -146,7 +146,7 @@ class TodoService
         ];
 
         foreach ($array as $key => $value) {
-            if (isNull($value))
+            if (empty($value))
                 throw TodoException::invalidHtmlTagsInBody();
         }
 
