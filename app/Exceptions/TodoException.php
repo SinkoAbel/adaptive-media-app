@@ -6,6 +6,10 @@ use Exception;
 
 class TodoException extends Exception
 {
+    /**
+     * Handles the case when the expected path variable is invalid
+     * @return TodoException
+     */
     public static function invalidPathVariableException(): TodoException
     {
         return new self(
@@ -14,6 +18,10 @@ class TodoException extends Exception
         );
     }
 
+    /**
+     * Handles the exception case when an item can't be found in the database.
+     * @return TodoException
+     */
     public static function itemNotFound(): TodoException
     {
         return new self(
@@ -22,6 +30,10 @@ class TodoException extends Exception
         );
     }
 
+    /**
+     * Handles the case when the give body of TodoRequest is invalid
+     * @return TodoException
+     */
     public static function invalidRequestBody(): TodoException
     {
         return new self(
